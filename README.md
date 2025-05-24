@@ -20,9 +20,6 @@ A sleek and modern movie website built with **React**, powered by the **TMDB API
 
 ![Screenshot 2025-05-24 145550](https://github.com/user-attachments/assets/b7ad029a-345f-4216-8d74-e046b853f8b0)
 
-> ![Screenshot 2025-05-24 145600](https://github.com/user-attachments/assets/a110278c-4f37-4268-a2ed-8283f30da945)
-
-
 ---
 
 ## 📦 Tech Stack
