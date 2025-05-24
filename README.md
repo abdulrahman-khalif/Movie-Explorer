@@ -16,6 +16,8 @@ A sleek and modern movie website built with **React**, powered by the **TMDB API
 ---
 
 ## 📸 Demo
+    ![App Screenshot](./sec/assets/demo1.png)
+    ![App Screenshot](./sec/assets/demo2.png)
 
 > 
 
