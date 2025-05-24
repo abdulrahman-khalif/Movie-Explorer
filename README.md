@@ -35,7 +35,7 @@ A sleek and modern movie website built with **React**, powered by the **TMDB API
 ## 🧰 Installation
 
 ```bash
-git clone https://github.com/yourusername/moviemania.git
+git clone https://github.com/abdulrahman-khalif/Movie-Explorer.git
 cd moviemania
 npm install
 npm run dev
