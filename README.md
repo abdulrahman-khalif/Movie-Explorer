@@ -1,12 +1,40 @@
-# React + Vite
+# 🎬 MovieMania
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A sleek and modern movie website built with **React**, powered by the **TMDB API**. Browse popular movies, view trailers, explore genres, and dive into detailed movie info — all in a stylish, responsive UI.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🔍 **Discover Popular Movies** — powered by TMDB
+- 🎥 **Watch Trailers** — integrated YouTube player
+- 🌐 **Responsive Design** for all screen sizes
+- 💡 **Backdrop Blur Effects & UI Animations**
+- 🧭 **React Router Navigation**
+- 🛠️ Built using modern React practices (Hooks, Functional Components)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📸 Demo
+
+> 
+
+---
+
+## 📦 Tech Stack
+
+- **React** (with Hooks)
+- **React Router**
+- **TMDB API**
+- **Tailwind CSS**
+- **Vite**
+
+---
+
+## 🧰 Installation
+
+```bash
+git clone https://github.com/yourusername/moviemania.git
+cd moviemania
+npm install
+npm run dev
