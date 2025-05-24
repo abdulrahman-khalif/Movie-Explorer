@@ -11,14 +11,15 @@ export const url = 'https://api.themoviedb.org/3/discover/movie?include_adult=fa
 export  const movieSearch = `https://api.themoviedb.org/3/search/movie?&include_adult=false&language=en-US&page=1`
 
 
-export const url_Imdb = 'https://imdb236.p.rapidapi.com/imdb/top-box-office';
+export const url_Imdb = 'https://imdb236.p.rapidapi.com/api/imdb/top-box-office';
 export const options_Imdb = {
 	method: 'GET',
 	headers: {
 		'x-rapidapi-key': '3ad6e2474emsh15e2e90060989f9p12f900jsn9ffab28f324c',
 		'x-rapidapi-host': 'imdb236.p.rapidapi.com'
 	}
-}
+};
+
 
 
 

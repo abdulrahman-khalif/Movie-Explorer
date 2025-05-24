@@ -12,11 +12,10 @@ function App() {
 
 
   return (
-    <Routes>
+   <Routes>
       <Route path='/' element={<Content />}/>
       <Route path='/movie/:id' element={<Movie_Details />} />
     </Routes>
-
   );
 
 

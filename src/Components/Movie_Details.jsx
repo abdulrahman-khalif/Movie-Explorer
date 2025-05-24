@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useLocation } from 'react-router-dom';
 import { options } from '../api';
+import Spinner from './Spinner';
 const Movie_Details = () => {
     const { id } = useParams();
-    const location = useLocation();
-    const movie = location.state || {};
     const [movieData, setMovieDate] = useState(null);
     const [trailerKey, setTrailerKey] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +18,7 @@ const Movie_Details = () => {
         setIsLoading(true);
         const fetchTrailer = async () => {
             try {
-                const response = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}?&append_to_response=releases,videos`, options);
+                const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?&append_to_response=releases,videos`, options);
                 const data = await response.json();
                 console.log(data)
                 setMovieDate(data);
@@ -69,96 +67,98 @@ const Movie_Details = () => {
     return (
         <div className='movie-container'>
 
-            {isLoading ? (<span className="loader"></span>) : (
+            {isLoading ? (<div className="w-full flex justify-center items-center"><Spinner /></div>) 
+            : (
                 <>
-                    <div className='top-section'>
-                        <div className='movie-details'>
-                            <h2 className='title'>{movie.title} </h2>
-                            <div className='tags'>
-                                <span>{movie.release_date.split("-")[0]}</span>
+                    <div className='flex justify-between my-2.5'>
+                        <div className='flex flex-col flex-wrap space-x-2'>
+                            <h2>{movieData?.title} </h2>
+                            <div className='text-[var(--color-light-200)] px-2 mt-4'>
+                                <span>{movieData?.release_date.split("-")[0]}</span>
                                 <span> • {usRating}</span>
                                 <span> • {formatRuntime(movieData?.runtime)}</span>
                             </div>
                         </div>
-                        <div className='rate-popularity'>
+                        <div className='w-100 flex flex-row justify-around'>
                             <div className='rate'><img src="/star.svg" alt="star-icon" />
-                                <p>{movie?.vote_average.toFixed(2)}<span>/10</span></p>
+                                <p>{movieData?.vote_average.toFixed(2)}<span>/10</span></p>
                             </div>
-                            <span className='trand'>
+                            <div className='trand'>
                                 <img className="trand-icon" src="/trand-icon.svg" alt="trand-icon" />
-                                <span>{movie?.popularity}</span>
-                            </span>
+                                <p>{movieData?.popularity}</p>
+                            </div>
                         </div>
-                    </div><div className='mid-section'>
-                        <img className='movie-poster' src={movieData?.poster_path ? `https://image.tmdb.org/t/p/w500/${movieData?.poster_path}` : '/No-Poster-h.png'} />
+                    </div><div className='flex flex-row items-center justify-center gap-5 max-w-[1100px] w-full my-12 mx-auto max-lg:flex-col'>
+                        <img className='max-w-[303px] max-h-[441px] rounded-xl'src={movieData?.poster_path ? `https://image.tmdb.org/t/p/w500/${movieData?.poster_path}` : '/No-Poster-h.png'} />
                         <div className="trailer-box">
                             {trailerKey ? (
                                 <iframe
-                                    width="772"
+                                className=' max-lg:w-[400px]'
+                                    width="772px"
                                     height="441"
                                     src={`https://www.youtube.com/embed/${trailerKey}?autoplay`}
                                     title="Movie Trailer"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen
                                 ></iframe>
-                            ) : <img className='poster-NotFound' src='/No-Poster-w.png' />}
+                            ) : <img className='max-w-[772px] max-h-[441px]' src='/No-Poster-w.png' />}
 
                         </div>
 
                     </div>
-                    <div className='buttom-section'>
-                        <div className='gneres'>
-                            <span className='catacory'>Gneres</span>
-                            <div className='gneres-item'>
+                    <div className='flex items-start gap-5 flex-col flex-wrap'>
+                        <div className='overSection'>
+                            <p className='catacory'>Gneres</p>
+                            <div className='items'>
                                 {movieData?.genres.map((genre, index) => {
-                                    return <div key={index} className='gnere'>{genre.name}</div>
+                                    return <div key={index} className='bg-[#221f3d] text-center p-[15px] rounded-xl text-[16px] text-[#ffffff]'>{genre.name}</div>
                                 })}
                             </div>
                         </div>
-                        <div className='over-view'>
+                        <div className='overSection'>
                             <span className='catacory'>OverViw</span>
-                            <p className='movie-overView'>{movieData.overview}</p>
+                            <p className='text-lg max-w-[700px] w-full'>{movieData.overview}</p>
                         </div>
 
-                        <div className='release-date'>
+                        <div className='overSection'>
                             <span className='catacory'>Release date</span>
-                            <p className='description'>{Month(movieData.release_date)}</p>
+                            <p>{Month(movieData.release_date)}</p>
                         </div>
 
-                        <div className='status'>
+                        <div className='overSection'>
                             <span className='catacory'>Status</span>
-                            <p className='description'>{movieData.status}</p>
+                            <p> {movieData.status}</p>
                         </div>
 
-                        <div className='lang'>
+                        <div className='overSection'>
                             <span className='catacory'>language</span>
-                            <div className='lang-item'>
+                            <div className='items'>
                                 {movieData?.spoken_languages.map((lang, index) => {
-                                    return <div key={index} className='description'>{lang.english_name} </div>
+                                    return <p key={index}>{lang.english_name} </p>
                                 })}
                             </div>
                         </div>
 
-                        <div className='budget'>
+                        <div className='overSection'>
                             <span className='catacory'>Budget</span>
-                            <p className='description'>{convertMoney(movieData.budget)}</p>
+                            <p>{convertMoney(movieData.budget)}</p>
                         </div>
 
-                        <div className='revenue'>
+                        <div className='overSection'>
                             <span className='catacory'>Revenue</span>
-                            <p className='description'>{convertMoney(movieData.revenue)}</p>
+                            <p>{convertMoney(movieData.revenue)}</p>
                         </div>
 
-                        <div className='tagline'>
+                        <div className='overSection'>
                             <span className='catacory'>Tagline</span>
-                            <p className='description'>{movieData.tagline}</p>
+                            <p>{movieData.tagline}</p>
                         </div>
 
-                        <div className='production_companies'>
-                            <span className='catacory'>Production Companies</span>
-                            <div className='companies_name'>
+                        <div className='overSection'>
+                            <p className='catacory'>Production Companies</p>
+                            <div className='items'>
                                 {movieData?.production_companies.map((companies, index) => {
-                                    return <div key={index} className='description'>{companies.name} </div>
+                                    return <p key={index} >{companies.name} </p>
                                 })}
                             </div>
                         </div>
